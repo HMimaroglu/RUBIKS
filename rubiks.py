@@ -1,3 +1,5 @@
+import random
+
 class Rubiks:
 
     ## Initializes a solved rubik's cube
@@ -11,22 +13,23 @@ class Rubiks:
             'top': ['O'] * 9  # Orange
         } 
 
+        self.move_options = ['rd', 'ld', 'ru', 'lu', 'tl', 'tr', 'bl', 'br']
+
     ## Making a move using the rubik's cube
     def move(self, move: str) -> bool:
         # Twist top to left
         if move == 'tl': 
-            # Getting initial values
-            initial_front_top = self.faces['front'][:3]
-            initial_back_top = self.faces['back'][:3]
-            initial_left_top = self.faces['left'][:3]
-            initial_right_top = self.faces['right'][:3]
-            initial_top_top = self.faces['top'][:3]
+            # Getting initial values - only top row
+            initial_front_top = [self.faces['front'][0], self.faces['front'][1], self.faces['front'][2]]
+            initial_back_top = [self.faces['back'][0], self.faces['back'][1], self.faces['back'][2]]
+            initial_left_top = [self.faces['left'][0], self.faces['left'][1], self.faces['left'][2]]
+            initial_right_top = [self.faces['right'][0], self.faces['right'][1], self.faces['right'][2]]
 
-            # Moving around
-            self.faces['front'][:3] = initial_right_top
-            self.faces['back'][:3] = initial_left_top
-            self.faces['left'][:3] = initial_front_top
-            self.faces['right'][:3] = initial_back_top
+            # Moving around - only top row
+            self.faces['front'][0], self.faces['front'][1], self.faces['front'][2] = initial_right_top
+            self.faces['back'][0], self.faces['back'][1], self.faces['back'][2] = initial_left_top
+            self.faces['left'][0], self.faces['left'][1], self.faces['left'][2] = initial_front_top
+            self.faces['right'][0], self.faces['right'][1], self.faces['right'][2] = initial_back_top
             
             # Rotate the top face counter clockwise
             initial_top_top = self.faces['top'][:]
@@ -42,18 +45,17 @@ class Rubiks:
 
         # Twist top to right
         if move == 'tr':
-            # Getting initial values
-            initial_front_top = self.faces['front'][:3]
-            initial_back_top = self.faces['back'][:3]
-            initial_left_top = self.faces['left'][:3]
-            initial_right_top = self.faces['right'][:3]
-            initial_top_top = self.faces['top'][:3]
+            # Getting initial values - only top row
+            initial_front_top = [self.faces['front'][0], self.faces['front'][1], self.faces['front'][2]]
+            initial_back_top = [self.faces['back'][0], self.faces['back'][1], self.faces['back'][2]]
+            initial_left_top = [self.faces['left'][0], self.faces['left'][1], self.faces['left'][2]]
+            initial_right_top = [self.faces['right'][0], self.faces['right'][1], self.faces['right'][2]]
 
-            # Moving around
-            self.faces['front'][:3] = initial_left_top
-            self.faces['back'][:3] = initial_right_top
-            self.faces['left'][:3] = initial_back_top
-            self.faces['right'][:3] = initial_front_top
+            # Moving around - only top row
+            self.faces['front'][0], self.faces['front'][1], self.faces['front'][2] = initial_left_top
+            self.faces['back'][0], self.faces['back'][1], self.faces['back'][2] = initial_right_top
+            self.faces['left'][0], self.faces['left'][1], self.faces['left'][2] = initial_back_top
+            self.faces['right'][0], self.faces['right'][1], self.faces['right'][2] = initial_front_top
             
             # Rotate the top face clockwise
             initial_top_top = self.faces['top'][:]
@@ -69,18 +71,17 @@ class Rubiks:
 
         # Twist bottom to right
         if move == 'br':
-            # Getting initial values
-            initial_front_bottom = self.faces['front'][6:9]
-            initial_back_bottom = self.faces['back'][6:9]
-            initial_left_bottom = self.faces['left'][6:9]
-            initial_right_bottom = self.faces['right'][6:9]
-            initial_bottom_bottom = self.faces['bottom'][6:9]
+            # Getting initial values - only bottom row
+            initial_front_bottom = [self.faces['front'][6], self.faces['front'][7], self.faces['front'][8]]
+            initial_back_bottom = [self.faces['back'][6], self.faces['back'][7], self.faces['back'][8]]
+            initial_left_bottom = [self.faces['left'][6], self.faces['left'][7], self.faces['left'][8]]
+            initial_right_bottom = [self.faces['right'][6], self.faces['right'][7], self.faces['right'][8]]
 
-            # Moving around
-            self.faces['front'][6:9] = initial_left_bottom
-            self.faces['back'][6:9] = initial_right_bottom
-            self.faces['left'][6:9] = initial_back_bottom
-            self.faces['right'][6:9] = initial_front_bottom
+            # Moving around - only bottom row
+            self.faces['front'][6], self.faces['front'][7], self.faces['front'][8] = initial_left_bottom
+            self.faces['back'][6], self.faces['back'][7], self.faces['back'][8] = initial_right_bottom
+            self.faces['left'][6], self.faces['left'][7], self.faces['left'][8] = initial_back_bottom
+            self.faces['right'][6], self.faces['right'][7], self.faces['right'][8] = initial_front_bottom
             
             # Rotate the bottom face clockwise
             initial_bottom_bottom = self.faces['bottom'][:]
@@ -96,18 +97,17 @@ class Rubiks:
 
         # Twist bottom to left
         if move == 'bl':
-            # Getting initial values
-            initial_front_bottom = self.faces['front'][6:9]
-            initial_back_bottom = self.faces['back'][6:9]
-            initial_left_bottom = self.faces['left'][6:9]
-            initial_right_bottom = self.faces['right'][6:9]
-            initial_bottom_bottom = self.faces['bottom'][6:9]
+            # Getting initial values - only bottom row
+            initial_front_bottom = [self.faces['front'][6], self.faces['front'][7], self.faces['front'][8]]
+            initial_back_bottom = [self.faces['back'][6], self.faces['back'][7], self.faces['back'][8]]
+            initial_left_bottom = [self.faces['left'][6], self.faces['left'][7], self.faces['left'][8]]
+            initial_right_bottom = [self.faces['right'][6], self.faces['right'][7], self.faces['right'][8]]
 
-            # Moving around
-            self.faces['front'][6:9] = initial_right_bottom
-            self.faces['back'][6:9] = initial_left_bottom
-            self.faces['left'][6:9] = initial_front_bottom
-            self.faces['right'][6:9] = initial_back_bottom
+            # Moving around - only bottom row
+            self.faces['front'][6], self.faces['front'][7], self.faces['front'][8] = initial_right_bottom
+            self.faces['back'][6], self.faces['back'][7], self.faces['back'][8] = initial_left_bottom
+            self.faces['left'][6], self.faces['left'][7], self.faces['left'][8] = initial_front_bottom
+            self.faces['right'][6], self.faces['right'][7], self.faces['right'][8] = initial_back_bottom
             
             # Rotate the bottom face counter clockwise
             initial_bottom_bottom = self.faces['bottom'][:]
@@ -123,15 +123,15 @@ class Rubiks:
 
         # Twist left upwards
         if move == 'lu':
-            # Getting initial values
+            # Getting initial values - only left column
             initial_front_left = [self.faces['front'][0], self.faces['front'][3], self.faces['front'][6]]
-            initial_back_left = [self.faces['back'][2], self.faces['back'][5], self.faces['back'][8]]
+            initial_back_left = [self.faces['back'][8], self.faces['back'][5], self.faces['back'][2]]
             initial_top_left = [self.faces['top'][0], self.faces['top'][3], self.faces['top'][6]]
             initial_bottom_left = [self.faces['bottom'][0], self.faces['bottom'][3], self.faces['bottom'][6]]
 
-            # Moving around
+            # Moving around - only left column
             self.faces['front'][0], self.faces['front'][3], self.faces['front'][6] = initial_bottom_left
-            self.faces['back'][2], self.faces['back'][5], self.faces['back'][8] = initial_top_left
+            self.faces['back'][8], self.faces['back'][5], self.faces['back'][2] = initial_top_left
             self.faces['top'][0], self.faces['top'][3], self.faces['top'][6] = initial_front_left
             self.faces['bottom'][0], self.faces['bottom'][3], self.faces['bottom'][6] = initial_back_left
             
@@ -149,15 +149,15 @@ class Rubiks:
 
         # Twist left downwards
         if move == 'ld':
-            # Getting initial values
+            # Getting initial values - only left column
             initial_front_left = [self.faces['front'][0], self.faces['front'][3], self.faces['front'][6]]
-            initial_back_left = [self.faces['back'][2], self.faces['back'][5], self.faces['back'][8]]
+            initial_back_left = [self.faces['back'][8], self.faces['back'][5], self.faces['back'][2]]
             initial_top_left = [self.faces['top'][0], self.faces['top'][3], self.faces['top'][6]]
             initial_bottom_left = [self.faces['bottom'][0], self.faces['bottom'][3], self.faces['bottom'][6]]
 
-            # Moving around
+            # Moving around - only left column
             self.faces['front'][0], self.faces['front'][3], self.faces['front'][6] = initial_top_left
-            self.faces['back'][2], self.faces['back'][5], self.faces['back'][8] = initial_bottom_left
+            self.faces['back'][8], self.faces['back'][5], self.faces['back'][2] = initial_bottom_left
             self.faces['top'][0], self.faces['top'][3], self.faces['top'][6] = initial_back_left
             self.faces['bottom'][0], self.faces['bottom'][3], self.faces['bottom'][6] = initial_front_left
             
@@ -175,15 +175,15 @@ class Rubiks:
 
         # Twist right upwards
         if move == 'ru':
-            # Getting initial values
+            # Getting initial values - only right column
             initial_front_right = [self.faces['front'][2], self.faces['front'][5], self.faces['front'][8]]
-            initial_back_right = [self.faces['back'][0], self.faces['back'][3], self.faces['back'][6]]
+            initial_back_right = [self.faces['back'][6], self.faces['back'][3], self.faces['back'][0]]
             initial_top_right = [self.faces['top'][2], self.faces['top'][5], self.faces['top'][8]]
             initial_bottom_right = [self.faces['bottom'][2], self.faces['bottom'][5], self.faces['bottom'][8]]
 
-            # Moving around
+            # Moving around - only right column
             self.faces['front'][2], self.faces['front'][5], self.faces['front'][8] = initial_bottom_right
-            self.faces['back'][0], self.faces['back'][3], self.faces['back'][6] = initial_top_right
+            self.faces['back'][6], self.faces['back'][3], self.faces['back'][0] = initial_top_right
             self.faces['top'][2], self.faces['top'][5], self.faces['top'][8] = initial_front_right
             self.faces['bottom'][2], self.faces['bottom'][5], self.faces['bottom'][8] = initial_back_right
             
@@ -201,15 +201,15 @@ class Rubiks:
 
         # Twist right downwards
         if move == 'rd':
-            # Getting initial values
+            # Getting initial values - only right column
             initial_front_right = [self.faces['front'][2], self.faces['front'][5], self.faces['front'][8]]
-            initial_back_right = [self.faces['back'][0], self.faces['back'][3], self.faces['back'][6]]
+            initial_back_right = [self.faces['back'][6], self.faces['back'][3], self.faces['back'][0]]
             initial_top_right = [self.faces['top'][2], self.faces['top'][5], self.faces['top'][8]]
             initial_bottom_right = [self.faces['bottom'][2], self.faces['bottom'][5], self.faces['bottom'][8]]
 
-            # Moving around
+            # Moving around - only right column
             self.faces['front'][2], self.faces['front'][5], self.faces['front'][8] = initial_top_right
-            self.faces['back'][0], self.faces['back'][3], self.faces['back'][6] = initial_bottom_right
+            self.faces['back'][6], self.faces['back'][3], self.faces['back'][0] = initial_bottom_right
             self.faces['top'][2], self.faces['top'][5], self.faces['top'][8] = initial_back_right
             self.faces['bottom'][2], self.faces['bottom'][5], self.faces['bottom'][8] = initial_front_right
             
@@ -224,7 +224,28 @@ class Rubiks:
             self.faces['right'][6] = initial_right_face[0]
             self.faces['right'][7] = initial_right_face[3]
             self.faces['right'][8] = initial_right_face[6]
-
-    # # Randomize 
-    # def randomize(cube: Rubiks) -> Rubiks:
         
+        return True
+
+    # Randomize 
+    def randomize(self):
+
+        for _ in range(random.randint(0, 1000)):
+            move = random.randint(0, 7)
+            self.move(self.move_options[move])
+
+        return self
+
+    # Solved?
+    def solved(self) -> bool:
+        solved_rubriks = Rubiks()
+        
+        if self.faces == solved_rubriks.faces:
+            return True
+        
+        return False
+    
+
+    ## SOLVING SECTION ##
+
+    

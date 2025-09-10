@@ -1,0 +1,264 @@
+[
+  {
+    "scramble_id": 0,
+    "scramble_depth": 8,
+    "solved": false,
+    "steps": null,
+    "nodes_expanded": 10000,
+    "solve_time": 2.4472498893737793,
+    "solution": null
+  },
+  {
+    "scramble_id": 1,
+    "scramble_depth": 3,
+    "solved": true,
+    "steps": 3,
+    "nodes_expanded": 69,
+    "solve_time": 0.016391992568969727,
+    "solution": [
+      "lu",
+      "tcw",
+      "ru"
+    ]
+  },
+  {
+    "scramble_id": 2,
+    "scramble_depth": 3,
+    "solved": true,
+    "steps": 3,
+    "nodes_expanded": 63,
+    "solve_time": 0.014616012573242188,
+    "solution": [
+      "rd",
+      "rd",
+      "ld"
+    ]
+  },
+  {
+    "scramble_id": 3,
+    "scramble_depth": 4,
+    "solved": true,
+    "steps": 4,
+    "nodes_expanded": 369,
+    "solve_time": 0.08555412292480469,
+    "solution": [
+      "bccw",
+      "ru",
+      "tcw",
+      "rd"
+    ]
+  },
+  {
+    "scramble_id": 4,
+    "scramble_depth": 8,
+    "solved": false,
+    "steps": null,
+    "nodes_expanded": 10000,
+    "solve_time": 2.384114980697632,
+    "solution": null
+  },
+  {
+    "scramble_id": 5,
+    "scramble_depth": 4,
+    "solved": true,
+    "steps": 4,
+    "nodes_expanded": 356,
+    "solve_time": 0.10973691940307617,
+    "solution": [
+      "lu",
+      "ru",
+      "lu",
+      "bccw"
+    ]
+  },
+  {
+    "scramble_id": 6,
+    "scramble_depth": 4,
+    "solved": true,
+    "steps": 4,
+    "nodes_expanded": 353,
+    "solve_time": 0.08022689819335938,
+    "solution": [
+      "tccw",
+      "ru",
+      "ru",
+      "tcw"
+    ]
+  },
+  {
+    "scramble_id": 7,
+    "scramble_depth": 3,
+    "solved": true,
+    "steps": 3,
+    "nodes_expanded": 64,
+    "solve_time": 0.014206171035766602,
+    "solution": [
+      "ld",
+      "tcw",
+      "bcw"
+    ]
+  },
+  {
+    "scramble_id": 8,
+    "scramble_depth": 7,
+    "solved": false,
+    "steps": null,
+    "nodes_expanded": 10000,
+    "solve_time": 2.4002559185028076,
+    "solution": null
+  },
+  {
+    "scramble_id": 9,
+    "scramble_depth": 6,
+    "solved": true,
+    "steps": 6,
+    "nodes_expanded": 9773,
+    "solve_time": 2.3189899921417236,
+    "solution": [
+      "bccw",
+      "ru",
+      "bccw",
+      "bccw",
+      "tccw",
+      "ru"
+    ]
+  },
+  {
+    "scramble_id": 10,
+    "scramble_depth": 5,
+    "solved": true,
+    "steps": 5,
+    "nodes_expanded": 1774,
+    "solve_time": 0.40012407302856445,
+    "solution": [
+      "bccw",
+      "ru",
+      "ru",
+      "bccw",
+      "lu"
+    ]
+  },
+  {
+    "scramble_id": 11,
+    "scramble_depth": 4,
+    "solved": true,
+    "steps": 4,
+    "nodes_expanded": 355,
+    "solve_time": 0.08280396461486816,
+    "solution": [
+      "ru",
+      "bcw",
+      "rd",
+      "tccw"
+    ]
+  },
+  {
+    "scramble_id": 12,
+    "scramble_depth": 3,
+    "solved": true,
+    "steps": 3,
+    "nodes_expanded": 71,
+    "solve_time": 0.01669001579284668,
+    "solution": [
+      "tccw",
+      "ld",
+      "bccw"
+    ]
+  },
+  {
+    "scramble_id": 13,
+    "scramble_depth": 8,
+    "solved": true,
+    "steps": 6,
+    "nodes_expanded": 9506,
+    "solve_time": 2.307978868484497,
+    "solution": [
+      "bccw",
+      "rd",
+      "lu",
+      "rd",
+      "tcw",
+      "tcw"
+    ]
+  },
+  {
+    "scramble_id": 14,
+    "scramble_depth": 8,
+    "solved": false,
+    "steps": null,
+    "nodes_expanded": 10000,
+    "solve_time": 2.395413875579834,
+    "solution": null
+  },
+  {
+    "scramble_id": 15,
+    "scramble_depth": 6,
+    "solved": true,
+    "steps": 6,
+    "nodes_expanded": 9621,
+    "solve_time": 2.2863919734954834,
+    "solution": [
+      "ru",
+      "bcw",
+      "ru",
+      "tcw",
+      "tcw",
+      "bcw"
+    ]
+  },
+  {
+    "scramble_id": 16,
+    "scramble_depth": 8,
+    "solved": true,
+    "steps": 6,
+    "nodes_expanded": 9600,
+    "solve_time": 2.270563840866089,
+    "solution": [
+      "rd",
+      "bcw",
+      "ld",
+      "rd",
+      "tcw",
+      "bccw"
+    ]
+  },
+  {
+    "scramble_id": 17,
+    "scramble_depth": 5,
+    "solved": true,
+    "steps": 5,
+    "nodes_expanded": 1860,
+    "solve_time": 0.4182701110839844,
+    "solution": [
+      "tcw",
+      "lu",
+      "rd",
+      "lu",
+      "bccw"
+    ]
+  },
+  {
+    "scramble_id": 18,
+    "scramble_depth": 8,
+    "solved": false,
+    "steps": null,
+    "nodes_expanded": 10000,
+    "solve_time": 2.413290023803711,
+    "solution": null
+  },
+  {
+    "scramble_id": 19,
+    "scramble_depth": 5,
+    "solved": true,
+    "steps": 5,
+    "nodes_expanded": 1893,
+    "solve_time": 0.42502593994140625,
+    "solution": [
+      "tcw",
+      "bccw",
+      "tcw",
+      "ru",
+      "ld"
+    ]
+  }
+]

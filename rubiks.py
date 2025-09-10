@@ -141,7 +141,7 @@ class Rubiks:
             self.faces['bottom'][0], self.faces['bottom'][2] = initial_back_right[::-1]
             self.faces['back'][1], self.faces['back'][3] = initial_top_left[::-1]
 
-            # Rotate left face
+            # Rotate left face (CCW)
             l = self.faces['left']
             self.faces['left'] = [l[1], l[3], l[0], l[2]]
             return True
@@ -159,7 +159,7 @@ class Rubiks:
             self.faces['bottom'][0], self.faces['bottom'][2] = initial_front_left
             self.faces['back'][1], self.faces['back'][3] = initial_bottom_left[::-1]
 
-            # Rotate left face
+            # Rotate left face (CW)
             l = self.faces['left']
             self.faces['left'] = [l[2], l[0], l[3], l[1]]
             return True
@@ -174,6 +174,7 @@ class Rubiks:
             self.move(self.move_options[move])
 
         return self
+
 
     ## Solved?
     def solved(self) -> bool:
@@ -199,29 +200,76 @@ class Rubiks:
             child.move(move)         
             self.children[move] = child
 
+    ## Encode cube for set
+    
+
     ## SOLVING SECTION ##
+    ## BFS
     def solve_BFS(self) -> int:
+        def encode(cube):
+            order = ['front','right','back','left','top','bottom']
+            flat = []
+            for f in order:
+                flat += cube.faces[f]
+            return tuple(flat) 
+
+
+        q = Queue()
+        visited = set()
+
+        start_key = encode(self)
+        visited.add(start_key)
+        q.put((self, 0))
+
+        while not q.empty():
+            cur, depth = q.get()
+            if cur.solved():
+                return depth
+
+            for move in self.move_options:
+                child = cur.clone()
+                child.move(move)
+                key = encode(child)
+                if key in visited:
+                    continue
+                visited.add(key)              
+                q.put((child, depth + 1))
+    
+    ## DFS 
+    def solve_DFS(self) -> int:
         i = 0
 
-        queue = Queue()
-        queue.put((self, 0))   # put the cube and depth
+        stack = [(self, 0)]
+        visited = set()
 
-        while not queue.empty():
-            cur, depth = queue.get()
+        while len(stack) > 0:
+            cur, depth = stack.pop()
+
+            # make a hashable key for this cube state
+            state_key = tuple(sum(cur.faces.values(), []))
+            if state_key in visited:
+                continue
+            visited.add(state_key)
+
+            i += 1  # count unique states
+            print(i)
 
             if cur.solved():
                 return depth
 
             cur.generate_children()
             for child in cur.children.values():
-                queue.put((child, depth + 1))
+                stack.append((child, depth + 1))
 
-            i += 1
-            print(i)
+        return -1
 
+
+
+
+
+
+
+            
 
 
         
-
-
-    

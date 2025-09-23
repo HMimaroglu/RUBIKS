@@ -1,10 +1,10 @@
 import random
-from queue import Queue
+from collections import deque
 
 class Rubiks:
 
     ## Initializes a solved 2x2 rubik's cube
-    def __init__(self): 
+    def __init__(self):
         self.faces = {
             'front': ['G'] * 4, # Green
             'back': ['B'] * 4, # Blue
@@ -12,11 +12,14 @@ class Rubiks:
             'right': ['W'] * 4, # White
             'left': ['Y'] * 4, # Yellow
             'top': ['O'] * 4  # Orange
-        } 
+        }
 
         self.move_options = ['ru', 'rd', 'lu', 'ld', 'tcw', 'tccw', 'bcw', 'bccw']
 
         self.children = {}
+        self.parent = None
+        self.move_from_parent = None
+        self.depth = 0
 
     ## Making a move using the rubik's cube
     def move(self, move: str) -> bool:
@@ -190,78 +193,68 @@ class Rubiks:
         new_cube = Rubiks()
         # manually copy faces
         new_cube.faces = {face: stickers[:] for face, stickers in self.faces.items()}
+        new_cube.parent = self
         return new_cube
 
     ## Creates children at current cube state
     def generate_children(self):
         self.children = {}
         for move in self.move_options:
-            child = self.clone()     
-            child.move(move)         
+            child = self.clone()
+            child.move(move)
+            child.parent = self
+            child.move_from_parent = move
+            child.depth = self.depth + 1
             self.children[move] = child
 
     ## Encode cube for set
+    def __eq__(self, other):
+        if not isinstance(other, Rubiks):
+            return False
+        return self.faces == other.faces
+
+    def __hash__(self):
+        return hash(tuple(sorted((face, tuple(stickers)) for face, stickers in self.faces.items())))
     
 
     ## SOLVING SECTION ##
     ## BFS
-    def solve_BFS(self) -> int:
-        def encode(cube):
-            order = ['front','right','back','left','top','bottom']
-            flat = []
-            for f in order:
-                flat += cube.faces[f]
-            return tuple(flat) 
+    def solve_BFS(self):
+        frontier = deque()
+        explored = set()
+
+        frontier.append(self)
+
+        while len(frontier) != 0:
+            current_node = frontier.popleft()
+            print(f"Depth: {current_node.depth}, Frontier: {len(frontier)}, Explored: {len(explored)}")
+
+            if current_node.solved():
+                # Backtrack to get move sequence
+                moves = []
+                node = current_node
+                while node.parent is not None:
+                    moves.append(node.move_from_parent)
+                    node = node.parent
+                moves.reverse()
+                return len(explored), moves
+
+            explored.add(current_node)
+
+            current_node.generate_children()
+            for child in current_node.children.values():
+                if child not in frontier and child not in explored:
+                    frontier.append(child)
+
+        return -1, []
+
+                
+            
 
 
-        q = Queue()
-        visited = set()
 
-        start_key = encode(self)
-        visited.add(start_key)
-        q.put((self, 0))
-
-        while not q.empty():
-            cur, depth = q.get()
-            if cur.solved():
-                return depth
-
-            for move in self.move_options:
-                child = cur.clone()
-                child.move(move)
-                key = encode(child)
-                if key in visited:
-                    continue
-                visited.add(key)              
-                q.put((child, depth + 1))
     
-    ## DFS 
-    def solve_DFS(self) -> int:
-        i = 0
-
-        stack = [(self, 0)]
-        visited = set()
-
-        while len(stack) > 0:
-            cur, depth = stack.pop()
-
-            # make a hashable key for this cube state
-            state_key = tuple(sum(cur.faces.values(), []))
-            if state_key in visited:
-                continue
-            visited.add(state_key)
-
-            i += 1  # count unique states
-            print(i)
-
-            if cur.solved():
-                return depth
-
-            cur.generate_children()
-            for child in cur.children.values():
-                stack.append((child, depth + 1))
-
-        return -1
+    
 
 
 
